@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lavih Spa — Insights Mai × Jun 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF9F4;
+  --card:#FFFFFF;
+  --ink:#282218;
+  --ink-soft:#6E6353;
+  --gold:#A98442;
+  --gold-soft:#C7A96B;
+  --gold-faint:#F2EADA;
+  --line:#E8E1D2;
+  --up:#5F7A52;
+  --up-bg:#EEF3EA;
+  --down:#A8574A;
+  --down-bg:#F7ECEA;
+  --mai:#D8CBAF;
+  --jun:#A98442;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Cormorant Garamond',serif}
+
+/* scroll progress */
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0%;z-index:99;transition:width .1s linear}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+
+/* ---------- HERO ---------- */
+header{padding:72px 0 44px;border-bottom:1px solid var(--line)}
+.brand{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:500}
+h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,6vw,64px);line-height:1.05;margin-top:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{margin-top:16px;max-width:620px;color:var(--ink-soft);font-size:16px;font-weight:300}
+.hero-meta{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}
+.hero-meta div span{display:block}
+.hm-label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
+.hm-value{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);margin-top:2px}
+
+/* ---------- SECTIONS ---------- */
+section{padding:58px 0 8px}
+.sec-eyebrow{font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);font-weight:500}
+h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,4vw,38px);margin:10px 0 6px}
+h2 em{font-style:italic;color:var(--gold)}
+.sec-desc{color:var(--ink-soft);font-size:15px;font-weight:300;max-width:640px;margin-bottom:30px}
+
+/* ---------- KPI CARDS ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold-soft);padding:24px 24px 20px;position:relative}
+.kpi-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft)}
+.kpi-value{font-family:'Cormorant Garamond',serif;font-size:42px;line-height:1.1;color:var(--ink);margin-top:8px;font-weight:500}
+.kpi-value .cur{font-size:22px;color:var(--gold);margin-right:2px}
+.kpi-prev{font-size:12.5px;color:var(--ink-soft);margin-top:2px;font-weight:300}
+.delta{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;letter-spacing:.04em;padding:3px 10px;border-radius:999px;margin-top:12px}
+.delta.up{color:var(--up);background:var(--up-bg)}
+.delta.down{color:var(--down);background:var(--down-bg)}
+.delta svg{width:10px;height:10px}
+
+/* ---------- MONTH DUEL ---------- */
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.duel-card{background:var(--card);border:1px solid var(--line);padding:28px}
+.duel-card.jun{border-left:3px solid var(--gold)}
+.duel-card.mai{border-left:3px solid var(--mai)}
+.duel-month{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--gold)}
+.duel-card.mai .duel-month{color:var(--ink-soft)}
+.duel-total{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:500;margin-top:4px}
+.duel-total .cur{font-size:24px;color:var(--gold)}
+.duel-rows{margin-top:18px;border-top:1px dotted var(--line)}
+.drow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dotted var(--line);font-size:14px}
+.drow b{font-weight:500}
+.drow .lab{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);align-self:center}
+
+/* ---------- WEEKLY CHART ---------- */
+.chart-card{background:var(--card);border:1px solid var(--line);padding:30px;margin-top:6px}
+.legend{display:flex;gap:24px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:22px}
+.legend i{display:inline-block;width:22px;height:10px;margin-right:8px;vertical-align:-1px}
+.legend .l-mai i{background:var(--mai)}
+.legend .l-jun i{background:var(--jun)}
+.wchart{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;align-items:end;height:240px}
+.wgroup{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.wbars{display:flex;gap:8px;align-items:flex-end;justify-content:center;height:100%}
+.wbar{width:38px;position:relative;transform-origin:bottom;transform:scaleY(0);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.wbar.mai{background:var(--mai)}
+.wbar.jun{background:var(--jun)}
+.wbar span{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11.5px;font-weight:500;color:var(--ink-soft);white-space:nowrap;opacity:0;transition:opacity .5s .6s}
+.inview .wbar{transform:scaleY(1)}
+.inview .wbar span{opacity:1}
+.wlabel{text-align:center;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:12px;padding-top:12px;border-top:1px dotted var(--line)}
+
+/* ---------- PROCEDURE LEDGER ---------- */
+.ledger{background:var(--card);border:1px solid var(--line);padding:8px 30px;margin-top:6px}
+.lhead,.lrow{display:grid;grid-template-columns:minmax(180px,2.2fr) 1fr 64px 64px 92px;gap:14px;align-items:center;padding:14px 0;border-bottom:1px dotted var(--line)}
+.lhead{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line)}
+.lrow:last-child{border-bottom:none}
+.lname{font-size:14.5px;font-weight:400}
+.lbars{display:flex;flex-direction:column;gap:5px}
+.lbar{height:8px;background:var(--gold-faint);position:relative;overflow:hidden}
+.lbar i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.lbar.mai i{background:var(--mai)}
+.lbar.jun i{background:var(--jun)}
+.inview .lbar i{transform:scaleX(var(--w))}
+.lnum{font-family:'Cormorant Garamond',serif;font-size:20px;text-align:right}
+.lnum.mai-n{color:var(--ink-soft)}
+.ldelta{text-align:right}
+.pill{display:inline-block;font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px}
+.pill.up{color:var(--up);background:var(--up-bg)}
+.pill.down{color:var(--down);background:var(--down-bg)}
+.pill.flat{color:var(--ink-soft);background:#F1EDE4}
+
+/* ---------- MOVERS ---------- */
+.movers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.mv{background:var(--card);border:1px solid var(--line);padding:26px 28px}
+.mv h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:24px;margin-bottom:4px}
+.mv.up-c h3{color:var(--up)}
+.mv.down-c h3{color:var(--down)}
+.mv p.small{font-size:12.5px;color:var(--ink-soft);font-weight:300;margin-bottom:14px}
+.mv-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dotted var(--line);font-size:14px;gap:12px}
+.mv-row:last-child{border-bottom:none}
+.mv-row .dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px)}
+.mv-row b{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;white-space:nowrap}
+.mv.up-c .mv-row b{color:var(--up)}
+.mv.down-c .mv-row b{color:var(--down)}
+
+/* ---------- INSIGHTS ---------- */
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:6px}
+.ins{background:var(--card);border:1px solid var(--line);padding:26px 28px;position:relative}
+.ins::before{content:"";position:absolute;top:0;left:0;width:44px;height:3px;background:var(--gold)}
+.ins h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;line-height:1.25;margin-bottom:10px}
+.ins h3 em{font-style:italic;color:var(--gold)}
+.ins p{font-size:14px;color:var(--ink-soft);font-weight:300}
+.ins p b{color:var(--ink);font-weight:500}
+.ins .tag{display:inline-block;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500}
+
+/* ---------- NOTE / FOOTER ---------- */
+.note{margin-top:54px;background:var(--gold-faint);border:1px solid #E4D7BC;padding:20px 26px;font-size:13.5px;color:#7A6335;font-weight:300}
+.note b{font-weight:500}
+footer{margin:64px 0 40px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.inview{opacity:1;transform:none}
+
+@media(max-width:760px){
+  .duel,.movers{grid-template-columns:1fr}
+  .wchart{gap:12px}
+  .wbar{width:26px}
+  .lhead,.lrow{grid-template-columns:minmax(120px,1.6fr) 1fr 44px 44px 76px;gap:8px}
+  .lnum{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .wbar,.lbar i{transform:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div class="wrap">
+
+<header>
+  <div class="brand">Lavih Spa · Inteligência de Atendimentos</div>
+  <h1>Evolução <em>Maio × Junho</em> 2026</h1>
+  <p class="hero-sub">Leitura estratégica dos atendimentos da profissional <strong>Ingrid</strong>: o que cresceu, o que recuou e onde está a oportunidade para julho.</p>
+  <div class="hero-meta">
+    <div><span class="hm-label">Período</span><span class="hm-value serif">01 mai — 30 jun</span></div>
+    <div><span class="hm-label">Registros válidos</span><span class="hm-value serif" id="hm-regs">—</span></div>
+    <div><span class="hm-label">Profissional</span><span class="hm-value serif">Ingrid</span></div>
+  </div>
+</header>
+
+<!-- KPIs -->
+<section class="reveal">
+  <div class="sec-eyebrow">Visão geral</div>
+  <h2>O mês em <em>quatro números</em></h2>
+  <p class="sec-desc">Comparativo direto de junho contra maio. Todos os valores de comissão já desconsideram o lançamento duplicado identificado em 19/jun.</p>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<!-- MONTH DUEL -->
+<section class="reveal">
+  <div class="sec-eyebrow">Mês × Mês</div>
+  <h2>Maio ao lado de <em>Junho</em></h2>
+  <div class="duel" id="duel"></div>
+</section>
+
+<!-- WEEKLY -->
+<section class="reveal">
+  <div class="sec-eyebrow">Ritmo semanal</div>
+  <h2>Comissão por <em>semana do mês</em></h2>
+  <p class="sec-desc">Junho superou maio em três das quatro semanas — e o fechamento de mês (dias 22–30) foi o trecho de maior salto, sinal de agenda cheia até o último dia.</p>
+  <div class="chart-card">
+    <div class="legend"><span class="l-mai"><i></i>Maio</span><span class="l-jun"><i></i>Junho</span></div>
+    <div class="wchart" id="wchart"></div>
+  </div>
+</section>
+
+<!-- LEDGER -->
+<section class="reveal">
+  <div class="sec-eyebrow">Procedimentos</div>
+  <h2>O que <em>subiu</em> e o que <em>caiu</em></h2>
+  <p class="sec-desc">Frequência de cada procedimento (contagem de vezes em que foi realizado, isolado ou em combo), ordenada pelo volume de junho.</p>
+  <div class="ledger">
+    <div class="lhead"><span>Procedimento</span><span>Mai × Jun</span><span style="text-align:right">Mai</span><span style="text-align:right">Jun</span><span style="text-align:right">Variação</span></div>
+    <div id="lrows"></div>
+  </div>
+</section>
+
+<!-- MOVERS -->
+<section class="reveal">
+  <div class="sec-eyebrow">Destaques</div>
+  <h2>Maiores <em>altas</em> e <em>quedas</em></h2>
+  <div class="movers">
+    <div class="mv up-c">
+      <h3>Em ascensão</h3>
+      <p class="small">Procedimentos que mais ganharam volume em junho</p>
+      <div id="ups"></div>
+    </div>
+    <div class="mv down-c">
+      <h3>Em retração</h3>
+      <p class="small">Procedimentos que perderam espaço em junho</p>
+      <div id="downs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="reveal">
+  <div class="sec-eyebrow">Leitura estratégica</div>
+  <h2>Insights para <em>julho</em></h2>
+  <div class="insights">
+    <div class="ins"><span class="tag">Motor do crescimento</span>
+      <h3>O crescimento veio de <em>valor</em>, não de volume</h3>
+      <p>A comissão subiu <b>+16,4%</b> com apenas <b>+6,2%</b> de atendimentos. O ticket médio por atendimento saltou de <b>R$ 43,64 para R$ 47,85 (+9,6%)</b> — Ingrid está vendendo serviços mais caros e mais combos, não apenas trabalhando mais.</p>
+    </div>
+    <div class="ins"><span class="tag">Carro-chefe</span>
+      <h3>Hair Spa Total 120 min virou o <em>protagonista</em></h3>
+      <p>De <b>15 para 26 realizações (+73%)</b>, o serviço de R$ 60 de comissão respondeu sozinho por boa parte do ganho do mês. É o procedimento a proteger na agenda: horários nobres e recorrência.</p>
+    </div>
+    <div class="ins"><span class="tag">Migração de portfólio</span>
+      <h3>Clientes fizeram <em>upgrade</em> do Capilar para o Total</h3>
+      <p>O Hair Spa Capilar (R$ 30) caiu de <b>13 para 8</b> enquanto o Total 120 explodiu — indício de migração interna para a versão completa. Movimento saudável: cada upgrade dobra a comissão do horário.</p>
+    </div>
+    <div class="ins"><span class="tag">Venda adicional</span>
+      <h3>Purificação dos Pés é o <em>add-on</em> que funciona</h3>
+      <p>Saltou de <b>13 → 20 realizações (+54%)</b>, quase sempre acoplada a Ritual ou Hair Spa. É a alavanca de ticket mais barata de ativar — vale oferecer ativamente em todo agendamento de Ritual.</p>
+    </div>
+    <div class="ins"><span class="tag">Ponto de atenção</span>
+      <h3>Day Spas e Revitalizante <em>esfriaram</em></h3>
+      <p>Mini Day Spa caiu de <b>4 para 2</b> e o Spa dos Pés Revitalizante de <b>7 para 4</b> — justamente itens de comissão alta (R$ 75–90). Uma campanha de resgate desses pacotes em julho pode destravar R$ 200+ extras.</p>
+    </div>
+    <div class="ins"><span class="tag">Recorrência</span>
+      <h3>Base fiel sustenta a <em>agenda</em></h3>
+      <p>Clientes como <b>Nayara Ostrowski</b> (2× em jun), <b>Andrea Chedid</b> (4× no bimestre), <b>Fernanda Maraccini</b> e <b>João Sampaio Natal</b> voltaram nos dois meses. Drenagem Linfática é o serviço-âncora de recorrência: recuou (10 → 8) e merece pacote de fidelidade.</p>
+    </div>
+    <div class="ins"><span class="tag">Recorde do bimestre</span>
+      <h3>O maior atendimento único foi de <em>R$ 130</em></h3>
+      <p>Gabriel Patrick Moreira (10/jun) combinou Hair Spa Total + Limpeza de Pele + Detox Capilar. Combos triplos como esse apareceram mais em junho e são o modelo do ticket ideal.</p>
+    </div>
+    <div class="ins"><span class="tag">Dias fortes</span>
+      <h3>Terças e dias 16, 11 e 09 foram os <em>picos</em></h3>
+      <p>Junho teve três dias com <b>6 atendimentos</b> (09, 11 e 16). Maio teve pico de 6 apenas nos dias 20 e 23. A capacidade de ~6 atendimentos/dia já é realidade — replicá-la 2× por semana levaria o mês à casa dos R$ 5 mil.</p>
+    </div>
+  </div>
+
+  <div class="note"><b>Nota de qualidade dos dados:</b> o registro de 19/jun em nome de “Leia dos Reis Cabral Kin” (Hair Spa Total 120 min · R$ 60) foi identificado como duplicata de “Leia do Reis Cabral Kin” e excluído das análises. Por isso o total de junho considerado aqui é <b>R$ 4.115</b> (e não R$ 4.175).</div>
+</section>
+
+<footer>
+  <span>Lavih Spa · Gestão de Atendimentos</span>
+  <span>Análise Mai–Jun 2026 · Profissional Ingrid</span>
+</footer>
+
+</div>
+
+<script>
+/* ================= DADOS (duplicata de 19/jun excluída) ================= */
+const HS120='Hair Spa Harmonia Total 120 min',HS100='Hair Spa Harmonia Total 100 min',CAP='Hair Spa Harmonia Capilar',
+RIT='Ritual das Pedras Quentes',PUR='Purificação dos Pés',ESF='Esfoliação das Mãos',DRE='Drenagem Linfática Sensorial',
+DFG='Drenagem Facial Glow',SPR='Spa dos Pés Revitalizante',HYD='Harmonia Hydro Experience',HID='Hidratação Labial com Colágeno',
+MDR='Mini Day Spa Renovação',MDD='Mini Day Spa Detox',KID='Spa Kids',DES='Massagem Desportiva',EXP='Massagem Express',
+LPR='Limpeza de Pele Relax',TMR='Terapia Men Regeneração',GES='Gestação Tranquila',VEN='Massagem Restaurativa com Ventosa',
+DET='Detox Capilar com Argila Branca',APO='Adicional Ritual Pele de Ouro',MIN='Minutos Adicionais',SUP='Ritual das Pedras Quentes Supreme';
+
+const JUN=[
+[30,'Enilza Oliveira',[HS120],60],[30,'Cristiane Regina de Andrade',[HYD],90],[30,'Aline Maria Olyntho Vieira',[RIT],30],[30,'Pamella Melo de Andrade',[RIT],30],
+[27,'Caroline benigno Cardoso',[HS120],60],[27,'Anita Lini',[HS120],60],[27,'Josymeire Lopes Santos',[HS100],50],[27,'Waleska Maria Sorrini da Costa',[RIT],30],
+[26,'Caue Yamada Ferreira',[HS120],60],[26,'Marco Antonio Ramos Ribeiro',[RIT],30],
+[25,'Giovana Clavision Siqueira',[RIT],30],[25,'Rafael Ferreira da Silva',[HS120,PUR],65],[25,'Renata Tassi Alegrucci',[HS120],60],[25,'Livia Alves Varanda',[DRE,DFG],45],
+[24,'Carla Mota dos Santos',[HS120],60],[24,'Nayara Alves Campos Ostrowski',[DRE],30],
+[23,'Sara Vitoria Ribeiro Moretti',[HS120,PUR,ESF],70],[23,'Andressa de Lima Runge',[HS120,PUR,ESF],70],
+[22,'Mayara Pompeo dos Santos',[HYD],90],[22,'Natalia Janelas Rodrigues',[HS120],60],
+[20,'Isabel Cristina Caeiro Silva',[RIT],30],[20,'Regiane Roberta de Assis',[HS100,PUR],55],
+[19,'Leia do Reis Cabral Kin',[HS120],60],[19,'Joao Rodrigo Sampaio Natal',[DES],30],[19,'Marcello Rodrigues da Silva',[RIT,PUR],35],[19,'Raquel Gois Carvalho Holanda',[RIT,PUR,ESF,HID],45],
+[18,'Andrea Queiroz',[DRE],30],[18,'Laura Scatena Catoira',[HS120],60],[18,'Julianna Govetri',[HS100],50],[18,'Ana Lucia Ambrico',[GES],40],
+[17,'Tamires Rodrigues do Nascimento',[EXP],15],[17,'Nayara Alves Campos Ostrowski',[DRE],30],[17,'Dayane Ramos Fernandes',[DRE],30],[17,'Vivianr Oliveira',[CAP,MDR],105],
+[16,'Pamela Oliveira Santos',[CAP],30],[16,'Mila Awale',[RIT],30],[16,'Giovanni Pizii Maraccini',[HS120],60],[16,'Fernanda Noronha Maraccini',[DRE],30],[16,'Ana Cristina Costa Zonato',[CAP],30],[16,'Isabel Cristina Mansoldo Vanni',[RIT,PUR,ESF,DFG],55],
+[13,'Renata Lima Ferreira Passos',[RIT],30],[13,'Maria Aparecida Ribeiro',[CAP],30],[13,'Fernanda Russo',[RIT,PUR],35],[13,'Marcelo do Nascimento',[RIT,PUR],35],[13,'Naide Miranda Assi',[HS120],60],
+[12,'Bruno Pedro da Silva',[RIT,PUR],35],[12,'Fabiana Krueger Perossi',[RIT],30],[12,'Daniel Zezza Zuolo',[HS120],60],[12,'Thayanne Mayara rocha lima',[HS120,SPR],90],[12,'Agna Nogueira',[RIT,PUR],35],
+[11,'Magali de Paula Santos',[RIT,PUR],35],[11,'Vitor Favero de Padua',[RIT],30],[11,'Regiane Gonçalves Miranda',[RIT,PUR],35],[11,'Ariana Magalhaes Machado',[HS120],60],[11,'Leticia Gonçalves',[RIT,PUR],35],[11,'Andressa Moreira',[HS120,SPR],90],
+[10,'Marcella Tardeli E. A. Santana',[RIT],30],[10,'Flavia Noronha Maraccini',[RIT],30],[10,'Isadora Saggio Barbara',[KID],30],[10,'Gabriel Patrick Moreira',[HS120,LPR,DET],130],
+[9,'Vera Beatriz Souza Pincette',[DRE],30],[9,'Magalona Cristina Marques',[PUR,EXP],20],[9,'Shirley leme da Silva',[RIT],30],[9,'Marcos Roberto Angelotti',[RIT,PUR],35],[9,'Cristiane Aparecida Renzo de Souza',[HS120,PUR,DFG],80],[9,'Renan Oliveira',[RIT,PUR],35],
+[8,'Denise Davi',[HS120],60],[8,'Elisabete Aparecida Takeda',[HYD],90],[8,'Vitor de Paula Costa',[DES],30],
+[6,'Rodrigo Santana Fantibon',[RIT,PUR],35],[6,'Isabela Almeida Amorim',[VEN],30],[6,'Luana Leticia Silva Soares',[HS120,PUR,ESF],70],[6,'Joyce Beltrão dos Santos',[CAP,SPR],60],
+[5,'Eron Roque Lessa',[HS120,SPR],90],[5,'Marielly Burssed',[MDD],85],[5,'Leticia Camargo',[HS120],60],[5,'Rafael de Faria Payao Rodrigues',[TMR],30],
+[4,'Andressa de Abreu Ruzza',[RIT],30],[4,'Jessica Ritur',[CAP],30],[4,'Marcia Dias Lopes',[HS120],60],[4,'Eduardo Diamandis',[RIT,LPR],70],[4,'Priscila Camargo',[SUP],30],
+[3,'Luciene Brito Santos',[HS120],60],[3,'Andrea Dourado Chedid',[DRE],30],
+[2,'Natasha Vignali da Silva',[CAP],30],[2,'Erika Abud',[CAP],30]
+];
+
+const MAI=[
+[31,'Vera Lucia Utsumi',[HS120],60],[31,'Marcela Carvalho Fernandes',[CAP],30],[31,'Fernanda Sanches Nicoletti',[CAP],30],[31,'Amanda Christovan Ribeiro',[RIT,SPR],60],
+[30,'Roberta Bertoni Quintana',[CAP,RIT],60],
+[29,'Laura Perez Barreiro',[RIT,APO],40],[29,'Ana Claudia Medeiros de Almeida Glidden',[RIT,PUR,ESF,HID],45],[29,'Fatima Abdallah',[HS100],50],
+[28,'Ginger Assis',[HS120],60],[28,'Joao Rodrigo Sampaio Natal',[DES],30],[28,'Rodrigo Avian Peliçario',[RIT,SPR,ESF],65],[28,'Sheila de Araujo Bordin',[RIT],30],
+[27,'Fernanda Marylin Rufino',[MDR],75],[27,'Andrea Dourado Chedid',[DRE],30],[27,'Renato Paulino Soares',[SPR],30],[27,'Clarissa Piffer Braga',[HS100],50],
+[26,'Pamela Guirra Braga',[RIT,ESF],35],[26,'Maria Fernanda Hypolito',[RIT],30],[26,'Fernanda Gomes Afonso',[RIT,ESF],35],[26,'Solange Fatima Canil de Souza',[HS120,PUR,ESF],70],[26,'Suzana Freitas de Noronha',[DRE],30],
+[25,'Daniele Cristiane Bach',[HS120],60],[25,'Joyce Jeime Barreto Fernandes Nobre',[HS120],60],
+[23,'Lucimario Moreira Costa',[RIT],30],[23,'Fabienne Macrini',[RIT,PUR],35],[23,'Ana Maria Martins',[CAP],30],[23,'Gabriela Loes',[DRE],30],[23,'Janaina Frontaroli Azevedo',[RIT,PUR],35],[23,'Giovanna Oliveira Feitoza',[KID],30],
+[22,'Bruna Fernanda da Silva',[CAP],30],[22,'Elisangela Marques de Souza',[HS120],60],[22,'Bianca Lourenço',[RIT,SPR],60],
+[21,'Telma Helena Silvestre',[CAP],30],[21,'Cristiane Carvalho Cunha Silva',[RIT,MIN],40],[21,'Luana Macedo Gandra',[CAP],30],[21,'Gabriela Alejandra',[RIT,PUR,APO],45],
+[20,'Glauce Alonso Silveira',[HYD],90],[20,'Andrea Dourado Chedid',[DRE],30],[20,'Edward Arguilhera',[TMR],30],[20,'Victoria Marques Fernades',[KID],30],[20,'Isabela Dias',[RIT],30],[20,'Isis de Carvalho Amorim',[DRE],30],
+[19,'Anna Luiza Bandeira Guimarães Marcal',[PUR,EXP],20],[19,'Elisama Pouseu',[DRE],30],
+[18,'Fernanda Noronha Maraccini',[DRE],30],[18,'Matheus Assaid',[LPR],40],
+[15,'Giovanna Diniz De Francesco',[HS120],60],[15,'Aliete Maria de Jesus',[HID,MDD],90],[15,'Giuvanni Franzoni Longo',[HS120,SPR],90],
+[14,'Irene Maria dos Santos',[RIT,PUR,ESF,HID],45],[14,'Maria Helena da Silva Alves',[CAP],30],
+[13,'Arthur Alves Souza',[HS120,SPR],90],[13,'Shelma Brandão Silva',[RIT],30],[13,'Luciana Chiarotto',[HS120],60],
+[12,'Gleison Angioleti Santana',[RIT],30],[12,'Marcella Tardeli E. A. Santana',[RIT],30],[12,'Lilyan Nascimento Oliveira',[MDR],75],[12,'Deolinda Rodrigues Almeida',[CAP],30],
+[11,'Danielle Natal Kachvartanian',[DES],30],[11,'Leticia Salgado',[RIT],30],[11,'Isis Calisto Graeff Santana',[KID],30],[11,'Mariana Costa',[DRE],30],[11,'Lucia Karine Marin',[RIT,SPR],60],
+[9,'Aline Cristina da Silva Baptista Moura',[CAP,PUR,DFG],50],[9,'Alexandre Biguinas',[CAP],30],[9,'Cinthya Maria Mitsuko Nakashima',[HS120],60],
+[8,'Maria Fernanda Garcia Scala',[HS120],60],[8,'Camila Villafranca',[RIT],30],[8,'Alice Santana',[HS120],60],[8,'Priscila Dalberto Silva',[CAP,PUR],35],
+[7,'Luana Lopes Xavier',[RIT],30],[7,'Juliana de Freitas Silva Marques',[MDD],85],
+[6,'Maria Elisa',[HS120],60],
+[5,'Suzana (filho - gazebo)',[DRE],30],
+[2,'Jurema Maraccini',[DRE],30],[2,'Sara - Casal Gazebo',[HS120,PUR],65],[2,'Casal Gazebo',[PUR,ESF],10],[2,'Juliano - Casal gazebo',[RIT,PUR],35],[2,'Atef - casal Gazebo',[CAP],30],
+[1,'Amanda',[RIT,PUR,ESF,HID],45],[1,'Fernanda',[LPR],40]
+];
+
+/* ================= AGREGAÇÕES ================= */
+const fmt=n=>n.toLocaleString('pt-BR');
+const fmtBRL=n=>n.toLocaleString('pt-BR',{minimumFractionDigits:0});
+const sum=a=>a.reduce((s,r)=>s+r[3],0);
+const totMai=sum(MAI),totJun=sum(JUN);
+const nMai=MAI.length,nJun=JUN.length;
+const tickMai=totMai/nMai,tickJun=totJun/nJun;
+const uniq=a=>new Set(a.map(r=>r[1].toLowerCase().trim())).size;
+const uMai=uniq(MAI),uJun=uniq(JUN);
+const combos=a=>a.filter(r=>r[2].length>1).length;
+const cMai=combos(MAI),cJun=combos(JUN);
+
+document.getElementById('hm-regs').textContent=fmt(nMai+nJun)+' atendimentos';
+
+const pct=(a,b)=>((b-a)/a*100);
+const deltaHTML=(v,suffix='%')=>{
+  const up=v>=0, cls=up?'up':'down';
+  const arrow=up?'<svg viewBox="0 0 10 10"><path d="M5 1l4 5H6v3H4V6H1z" fill="currentColor"/></svg>':'<svg viewBox="0 0 10 10"><path d="M5 9L1 4h3V1h2v3h3z" fill="currentColor"/></svg>';
+  return `<span class="delta ${cls}">${arrow}${up?'+':''}${v.toLocaleString('pt-BR',{maximumFractionDigits:1})}${suffix} vs. maio</span>`;
+};
+
+/* KPIs */
+document.getElementById('kpis').innerHTML=`
+  <div class="kpi"><div class="kpi-label">Comissão de junho</div>
+    <div class="kpi-value"><span class="cur">R$</span><span data-count="${totJun}">0</span></div>
+    <div class="kpi-prev">Maio: R$ ${fmtBRL(totMai)}</div>${deltaHTML(pct(totMai,totJun))}</div>
+  <div class="kpi"><div class="kpi-label">Atendimentos</div>
+    <div class="kpi-value"><span data-count="${nJun}">0</span></div>
+    <div class="kpi-prev">Maio: ${nMai}</div>${deltaHTML(pct(nMai,nJun))}</div>
+  <div class="kpi"><div class="kpi-label">Ticket médio / atendimento</div>
+    <div class="kpi-value"><span class="cur">R$</span><span data-count="${tickJun.toFixed(2)}" data-dec="2">0</span></div>
+    <div class="kpi-prev">Maio: R$ ${tickMai.toLocaleString('pt-BR',{minimumFractionDigits:2})}</div>${deltaHTML(pct(tickMai,tickJun))}</div>
+  <div class="kpi"><div class="kpi-label">Atendimentos com combo</div>
+    <div class="kpi-value"><span data-count="${cJun}">0</span></div>
+    <div class="kpi-prev">Maio: ${cMai}</div>${deltaHTML(pct(cMai,cJun))}</div>`;
+
+/* Duel */
+const dias=a=>new Set(a.map(r=>r[0])).size;
+const best=a=>Math.max(...a.map(r=>r[3]));
+const mkDuel=(nome,cls,tot,dados)=>`
+ <div class="duel-card ${cls}">
+   <div class="duel-month serif">${nome} 2026</div>
+   <div class="duel-total"><span class="cur">R$</span>${fmtBRL(tot)}</div>
+   <div class="duel-rows">
+     <div class="drow"><span class="lab">Atendimentos</span><b>${dados.n}</b></div>
+     <div class="drow"><span class="lab">Dias trabalhados</span><b>${dados.d}</b></div>
+     <div class="drow"><span class="lab">Clientes únicos</span><b>${dados.u}</b></div>
+     <div class="drow"><span class="lab">Ticket médio</span><b>R$ ${dados.t.toLocaleString('pt-BR',{minimumFractionDigits:2})}</b></div>
+     <div class="drow"><span class="lab">Maior atendimento</span><b>R$ ${dados.b},00</b></div>
+     <div class="drow"><span class="lab">Média por dia</span><b>R$ ${(dados.tot/dados.d).toLocaleString('pt-BR',{maximumFractionDigits:0})}</b></div>
+   </div>
+ </div>`;
+document.getElementById('duel').innerHTML=
+ mkDuel('Maio','mai',totMai,{n:nMai,d:dias(MAI),u:uMai,t:tickMai,b:best(MAI),tot:totMai})+
+ mkDuel('Junho','jun',totJun,{n:nJun,d:dias(JUN),u:uJun,t:tickJun,b:best(JUN),tot:totJun});
+
+/* Weekly chart (semanas do mês: 1–7, 8–14, 15–21, 22–fim) */
+const wk=d=>d<=7?0:d<=14?1:d<=21?2:3;
+const wsum=a=>{const w=[0,0,0,0];a.forEach(r=>w[wk(r[0])]+=r[3]);return w};
+const wMai=wsum(MAI),wJun=wsum(JUN);
+const wMax=Math.max(...wMai,...wJun);
+const wl=['Dias 01–07','Dias 08–14','Dias 15–21','Dias 22–fim'];
+document.getElementById('wchart').innerHTML=wMai.map((v,i)=>`
+  <div class="wgroup">
+    <div class="wbars">
+      <div class="wbar mai" style="height:${v/wMax*100}%;transition-delay:${i*90}ms"><span>${fmtBRL(v)}</span></div>
+      <div class="wbar jun" style="height:${wJun[i]/wMax*100}%;transition-delay:${i*90+120}ms"><span>${fmtBRL(wJun[i])}</span></div>
+    </div>
+    <div class="wlabel">${wl[i]}</div>
+  </div>`).join('');
+
+/* Procedure counts */
+const countBy=a=>{const m={};a.forEach(r=>r[2].forEach(s=>m[s]=(m[s]||0)+1));return m};
+const pm=countBy(MAI),pj=countBy(JUN);
+const allProc=[...new Set([...Object.keys(pm),...Object.keys(pj)])];
+const rows=allProc.map(p=>({p,m:pm[p]||0,j:pj[p]||0})).map(r=>({...r,d:r.j-r.m}))
+  .sort((a,b)=>b.j-a.j||b.m-a.m);
+const maxC=Math.max(...rows.map(r=>Math.max(r.m,r.j)));
+document.getElementById('lrows').innerHTML=rows.map(r=>{
+  const cls=r.d>0?'up':r.d<0?'down':'flat';
+  const sign=r.d>0?'+':'';
+  const pctTxt=r.m>0?` · ${sign}${Math.round(r.d/r.m*100)}%`:(r.j>0?' · novo':'');
+  return `<div class="lrow">
+    <div class="lname">${r.p}</div>
+    <div class="lbars">
+      <div class="lbar mai"><i style="--w:${(r.m/maxC).toFixed(3)}"></i></div>
+      <div class="lbar jun"><i style="--w:${(r.j/maxC).toFixed(3)}"></i></div>
+    </div>
+    <div class="lnum mai-n">${r.m}</div>
+    <div class="lnum">${r.j}</div>
+    <div class="ldelta"><span class="pill ${cls}">${r.d===0?'estável':sign+r.d+pctTxt}</span></div>
+  </div>`;}).join('');
+
+/* Movers */
+const mkMv=(list,el)=>document.getElementById(el).innerHTML=list.map(r=>{
+  const sign=r.d>0?'+':'';
+  return `<div class="mv-row"><span>${r.p}</span><span class="dots"></span><b>${r.m} → ${r.j} <small style="font-family:'Jost';font-size:11px;font-weight:500">(${sign}${r.d})</small></b></div>`;
+}).join('');
+mkMv(rows.filter(r=>r.d>0).sort((a,b)=>b.d-a.d).slice(0,5),'ups');
+mkMv(rows.filter(r=>r.d<0).sort((a,b)=>a.d-b.d).slice(0,5),'downs');
+
+/* ================= ANIMAÇÕES ================= */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('inview');io.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      const end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),t0=performance.now(),dur=1300;
+      const step=t=>{const k=Math.min((t-t0)/dur,1),v=end*(1-Math.pow(1-k,3));
+        el.textContent=v.toLocaleString('pt-BR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+        if(k<1)requestAnimationFrame(step);};
+      requestAnimationFrame(step);});
+  }}),{threshold:.15});
+document.querySelectorAll('.reveal,.chart-card,.ledger').forEach(el=>io.observe(el));
+
+/* Scroll progress */
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+</script>
+</body>
+</html>
